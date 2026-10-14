@@ -184,6 +184,11 @@ body {
 }
 
 /* Typography Helpers matching Figma */
+.font-heading {
+  font-family: 'Google Sans Flex', 'Google Sans', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-variation-settings: 'GRAD' 0, 'ROND' 0, 'wdth' 100;
+}
+
 .font-prompt {
   font-family: 'Prompt', sans-serif;
 }

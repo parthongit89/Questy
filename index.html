@@ -10,7 +10,7 @@
   <!-- Preconnect to Google Fonts for optimal performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Google+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -32,9 +32,10 @@
             }
           },
           fontFamily: {
+            heading: ['"Google Sans Flex"', '"Google Sans"', '"Plus Jakarta Sans"', 'sans-serif'],
             prompt: ['Prompt', 'sans-serif'],
-            display: ['Outfit', 'Prompt', 'sans-serif'],
-            sans: ['"Plus Jakarta Sans"', 'Prompt', 'sans-serif'],
+            display: ['"Google Sans Flex"', '"Google Sans"', 'Prompt', 'sans-serif'],
+            sans: ['"Google Sans Flex"', '"Google Sans"', '"Plus Jakarta Sans"', 'sans-serif'],
             mono: ['"Fira Code"', 'monospace']
           }
         }
@@ -142,12 +143,12 @@
       
 
       <!-- Hero Headline matching Figma: Meet Questy -->
-      <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[135px] font-light leading-[1.05] tracking-tight text-white opacity-95 max-w-6xl mx-auto">
+      <h1 class="font-heading text-6xl sm:text-7xl md:text-8xl lg:text-[135px] font-light leading-[1.08] tracking-tight text-white opacity-95 max-w-6xl mx-auto">
         Meet Questy
       </h1>
 
       <!-- Hero Subtitle matching Figma: Elite R&D Intelligence for AI Developer Agents -->
-      <p class="mt-6 md:mt-10 text-2xl sm:text-3xl md:text-4xl lg:text-[55px] font-light leading-tight tracking-normal text-white opacity-85 max-w-5xl mx-auto">
+      <p class="font-heading mt-6 md:mt-8 text-xl sm:text-2xl md:text-3xl lg:text-[46px] xl:text-[52px] font-light leading-[1.3] tracking-[-0.01em] text-white opacity-85 max-w-6xl mx-auto lg:whitespace-nowrap">
         Elite R&amp;D Intelligence for AI Developer Agents
       </p>
 
@@ -158,7 +159,7 @@
       <div class="max-w-5xl mx-auto flex flex-col items-center">
         
         <!-- CTA Heading (data-node-id="108:112") -->
-        <h2 class="text-3xl sm:text-5xl md:text-[60px] font-normal leading-[1.15] text-white opacity-95">
+        <h2 class="font-heading text-3xl sm:text-5xl md:text-[60px] font-normal leading-[1.15] text-white opacity-95">
           Ready to accelerate your AI workflows?
         </h2>
 
@@ -198,12 +199,12 @@
       <div class="max-w-[1240px] mx-auto text-center flex flex-col items-center">
         
         <!-- About Questy Heading (data-node-id="95:69") -->
-        <h2 class="text-4xl sm:text-5xl md:text-[65px] font-normal leading-tight text-white opacity-95">
+        <h2 class="font-heading text-4xl sm:text-5xl md:text-[65px] font-normal leading-tight text-white opacity-95">
           About Questy
         </h2>
 
         <!-- About Questy Body Text (data-node-id="99:4") -->
-        <p class="mt-8 md:mt-12 text-xl sm:text-2xl md:text-3xl lg:text-[35px] font-light leading-relaxed text-white opacity-75 max-w-5xl">
+        <p class="font-heading mt-8 md:mt-12 text-xl sm:text-2xl md:text-3xl lg:text-[35px] font-light leading-relaxed text-white opacity-75 max-w-5xl">
           Questy transforms your coding assistant into a rigorous research partner by embedding institutional-grade R&amp;D protocols directly into its reasoning loop, eliminating hallucinations and ensuring total evidentiary rigor.
         </p>
 
@@ -256,7 +257,7 @@
       <div class="max-w-[1100px] mx-auto text-center flex flex-col items-center">
         
         <!-- Core Pillars Heading (data-node-id="101:45") -->
-        <h2 class="text-4xl sm:text-5xl md:text-[65px] font-normal leading-tight text-white opacity-95">
+        <h2 class="font-heading text-4xl sm:text-5xl md:text-[65px] font-normal leading-tight text-white opacity-95">
           Core Pillars
         </h2>
 
@@ -273,7 +274,7 @@
               <img src="assets/svg/pillar-circle-1.svg" alt="Circle Background" class="pillar-bg-svg" />
               <img src="assets/svg/icon-unbiased-thinking.svg" alt="Unbiased Thinking Icon" class="pillar-icon-svg animate-float" />
             </div>
-            <h3 class="mt-8 text-2xl md:text-[35px] font-light leading-normal text-white opacity-85 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
+            <h3 class="font-heading mt-8 text-2xl md:text-[35px] font-light leading-normal text-white opacity-85 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
               Unbiased Thinking
             </h3>
             <span class="mt-2 text-xs font-mono text-indigo-400 uppercase tracking-widest opacity-60 group-hover:opacity-100">
@@ -287,7 +288,7 @@
               <img src="assets/svg/pillar-circle-2.svg" alt="Circle Background" class="pillar-bg-svg" />
               <img src="assets/svg/icon-step-by-step.svg" alt="Step-by-Step System Icon" class="pillar-icon-svg animate-float-delayed" />
             </div>
-            <h3 class="mt-8 text-2xl md:text-[35px] font-normal leading-normal text-white opacity-85 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
+            <h3 class="font-heading mt-8 text-2xl md:text-[35px] font-normal leading-normal text-white opacity-85 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
               Step-by-Step System
             </h3>
             <span class="mt-2 text-xs font-mono text-indigo-400 uppercase tracking-widest opacity-60 group-hover:opacity-100">
@@ -301,7 +302,7 @@
               <img src="assets/svg/pillar-circle-3.svg" alt="Circle Background" class="pillar-bg-svg" />
               <img src="assets/svg/icon-real-proofs.svg" alt="Real Proofs Icon" class="pillar-icon-svg animate-float-delayed-2" />
             </div>
-            <h3 class="mt-8 text-2xl md:text-[40px] font-normal leading-normal text-white opacity-95 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
+            <h3 class="font-heading mt-8 text-2xl md:text-[40px] font-normal leading-normal text-white opacity-95 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
               Real Proofs
             </h3>
             <span class="mt-2 text-xs font-mono text-indigo-400 uppercase tracking-widest opacity-60 group-hover:opacity-100">
