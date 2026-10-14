@@ -189,17 +189,18 @@ function initModals() {
       const modal = document.getElementById(targetId);
       if (modal) {
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
       }
     });
   });
 
   closeButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       const modal = btn.closest('.modal-overlay');
       if (modal) {
         modal.classList.remove('active');
-        document.body.style.overflow = '';
+        document.body.classList.remove('modal-open');
       }
     });
   });
@@ -209,7 +210,7 @@ function initModals() {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.classList.remove('active');
-        document.body.style.overflow = '';
+        document.body.classList.remove('modal-open');
       }
     });
   });
@@ -220,7 +221,7 @@ function initModals() {
       document.querySelectorAll('.modal-overlay.active').forEach((modal) => {
         modal.classList.remove('active');
       });
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
     }
   });
 
