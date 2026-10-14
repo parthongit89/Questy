@@ -13,34 +13,61 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. Interactive Ambient Particle / Starfield Canvas
+   1. Interactive Ambient Particle / Starfield Canvas (GPU & Battery Optimized)
    ========================================================================== */
 function initParticleCanvas() {
   const canvas = document.getElementById('ambient-canvas');
   if (!canvas) return;
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: true });
+  if (!ctx) return;
+
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
+  let animId = null;
+  let isVisible = true;
 
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
+  // Adaptive particle count: light on mobile, optimal on desktop
+  const isMobile = width < 768;
+  const particleCount = isMobile
+    ? Math.min(Math.floor((width * height) / 30000), 28)
+    : Math.min(Math.floor((width * height) / 22000), 48);
 
-  const particleCount = Math.min(Math.floor((width * height) / 18000), 75);
   const particles = [];
-  const mouse = { x: -1000, y: -1000, radius: 120 };
+  const mouse = { x: -1000, y: -1000, radius: 110 };
 
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
+  // Passive mouse listeners for zero input lag
+  window.addEventListener(
+    'mousemove',
+    (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    },
+    { passive: true }
+  );
 
-  window.addEventListener('mouseleave', () => {
-    mouse.x = -1000;
-    mouse.y = -1000;
-  });
+  window.addEventListener(
+    'mouseleave',
+    () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    },
+    { passive: true }
+  );
+
+  // Debounced resize handler
+  let resizeTimer = null;
+  window.addEventListener(
+    'resize',
+    () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }, 150);
+    },
+    { passive: true }
+  );
 
   class Particle {
     constructor() {
@@ -50,10 +77,10 @@ function initParticleCanvas() {
     reset() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.35;
-      this.vy = (Math.random() - 0.5) * 0.35;
-      this.radius = Math.random() * 1.5 + 0.6;
-      this.alpha = Math.random() * 0.5 + 0.2;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.radius = Math.random() * 1.3 + 0.6;
+      this.alpha = Math.random() * 0.45 + 0.25;
       this.baseAlpha = this.alpha;
     }
 
@@ -64,16 +91,18 @@ function initParticleCanvas() {
       if (this.x < 0 || this.x > width) this.vx = -this.vx;
       if (this.y < 0 || this.y > height) this.vy = -this.vy;
 
-      // Mouse proximity interaction
+      // Mouse proximity interaction with pre-squared distance for speed
       const dx = mouse.x - this.x;
       const dy = mouse.y - this.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+      const distSq = dx * dx + dy * dy;
+      const maxRadiusSq = mouse.radius * mouse.radius;
 
-      if (dist < mouse.radius) {
+      if (distSq < maxRadiusSq) {
+        const dist = Math.sqrt(distSq);
         const force = (mouse.radius - dist) / mouse.radius;
-        this.x -= (dx / dist) * force * 1.5;
-        this.y -= (dy / dist) * force * 1.5;
-        this.alpha = Math.min(1, this.baseAlpha + 0.4);
+        this.x -= (dx / dist) * force * 1.4;
+        this.y -= (dy / dist) * force * 1.4;
+        this.alpha = Math.min(0.9, this.baseAlpha + 0.4);
       } else {
         this.alpha = this.baseAlpha;
       }
@@ -83,8 +112,6 @@ function initParticleCanvas() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(165, 180, 252, ${this.alpha})`;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = 'rgba(99, 102, 241, 0.4)';
       ctx.fill();
     }
   }
@@ -93,21 +120,29 @@ function initParticleCanvas() {
     particles.push(new Particle());
   }
 
-  function animate() {
+  const maxDist = 110;
+  const maxDistSq = maxDist * maxDist;
+
+  function renderFrame() {
+    if (!isVisible) return;
+
     ctx.clearRect(0, 0, width, height);
 
-    // Draw connecting lines between close particles
+    // Optimized constellation line batching: pre-checks squared distance
     for (let i = 0; i < particles.length; i++) {
+      const p1 = particles[i];
       for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const p2 = particles[j];
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const distSq = dx * dx + dy * dy;
 
-        if (dist < 110) {
-          const lineAlpha = (1 - dist / 110) * 0.12;
+        if (distSq < maxDistSq) {
+          const dist = Math.sqrt(distSq);
+          const lineAlpha = (1 - dist / maxDist) * 0.12;
           ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
           ctx.strokeStyle = `rgba(129, 140, 248, ${lineAlpha})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
@@ -115,33 +150,56 @@ function initParticleCanvas() {
       }
     }
 
-    particles.forEach((p) => {
-      p.update();
-      p.draw();
-    });
+    // Update and draw particles
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
 
-    requestAnimationFrame(animate);
+    animId = requestAnimationFrame(renderFrame);
   }
 
-  animate();
+  // Pause animation when tab is inactive to preserve 100% CPU/battery
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      isVisible = false;
+      if (animId) cancelAnimationFrame(animId);
+    } else {
+      isVisible = true;
+      animId = requestAnimationFrame(renderFrame);
+    }
+  });
+
+  animId = requestAnimationFrame(renderFrame);
 }
 
 /* ==========================================================================
-   2. Sticky Navigation Bar Scroll Blur
+   2. Sticky Navigation Bar Scroll (Ticking RAF throttled)
    ========================================================================== */
 function initNavbarScroll() {
   const navbar = document.getElementById('main-navbar');
   if (!navbar) return;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('glass-nav', 'py-4', 'shadow-2xl');
-      navbar.classList.remove('py-8');
-    } else {
-      navbar.classList.remove('glass-nav', 'py-4', 'shadow-2xl');
-      navbar.classList.add('py-8');
-    }
-  });
+  let isTicking = false;
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!isTicking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY > 40) {
+            navbar.classList.add('glass-nav', 'py-4', 'shadow-2xl');
+            navbar.classList.remove('py-8');
+          } else {
+            navbar.classList.remove('glass-nav', 'py-4', 'shadow-2xl');
+            navbar.classList.add('py-8');
+          }
+          isTicking = false;
+        });
+        isTicking = true;
+      }
+    },
+    { passive: true }
+  );
 }
 
 /* ==========================================================================
@@ -158,13 +216,13 @@ function initMobileMenu() {
   function openMenu() {
     mobileMenu.classList.remove('translate-x-full');
     mobileMenu.classList.add('translate-x-0');
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
   }
 
   function closeMenu() {
     mobileMenu.classList.add('translate-x-full');
     mobileMenu.classList.remove('translate-x-0');
-    document.body.style.overflow = '';
+    document.body.classList.remove('modal-open');
   }
 
   toggleBtn.addEventListener('click', openMenu);
@@ -355,7 +413,7 @@ function initPillarInteractions() {
       });
 
       detailsModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
     });
   });
 }

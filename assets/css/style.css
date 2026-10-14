@@ -120,19 +120,21 @@ body {
   background: #334155;
 }
 
-/* Ambient Radiant Glow Backgrounds */
+/* Ambient Radiant Glow Backgrounds (Hardware Accelerated & Contained) */
 .ambient-glow-top {
   position: absolute;
   top: -120px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   width: 100%;
   max-width: 1700px;
   height: auto;
   pointer-events: none;
   z-index: 0;
   opacity: 0.85;
-  filter: drop-shadow(0 0 100px rgba(0, 10, 90, 0.5));
+  filter: drop-shadow(0 0 80px rgba(0, 10, 90, 0.45));
+  will-change: transform, opacity;
+  contain: paint;
   animation: pulseGlow 14s ease-in-out infinite alternate;
 }
 
@@ -140,35 +142,37 @@ body {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   width: 100%;
   max-width: 2200px;
   height: auto;
   pointer-events: none;
   z-index: 0;
   opacity: 0.8;
+  will-change: transform, opacity;
+  contain: paint;
   animation: pulseGlowReverse 16s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlow {
   0% {
     opacity: 0.7;
-    transform: translateX(-50%) scale(0.98);
+    transform: translate3d(-50%, 0, 0) scale(0.98);
   }
   100% {
     opacity: 0.95;
-    transform: translateX(-50%) scale(1.05);
+    transform: translate3d(-50%, 0, 0) scale(1.04);
   }
 }
 
 @keyframes pulseGlowReverse {
   0% {
     opacity: 0.65;
-    transform: translateX(-50%) scale(1.04);
+    transform: translate3d(-50%, 0, 0) scale(1.03);
   }
   100% {
     opacity: 0.85;
-    transform: translateX(-50%) scale(0.97);
+    transform: translate3d(-50%, 0, 0) scale(0.98);
   }
 }
 
@@ -230,6 +234,8 @@ body {
   justify-content: center;
   border-radius: 50%;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  transform: translateZ(0);
   cursor: pointer;
 }
 
