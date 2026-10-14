@@ -307,96 +307,117 @@
        MODAL 1: Download & CLI Installation
        ======================================================================== -->
   <div id="download-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-    <div class="modal-content glass-panel w-full max-w-2xl rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
-      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div id="download-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+    <div class="modal-content questy-modal-card w-full max-w-2xl p-6 sm:p-10 relative shadow-2xl">
+      
+      <!-- Circular Glass Close Button -->
+      <button data-modal-close class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer z-20" aria-label="Close modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
 
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-xl bg-white text-black flex items-center justify-center font-bold text-xl">
-          Q
+      <!-- Modal Header matching Meet Questy aesthetic -->
+      <div class="relative z-10 mb-8">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-mono tracking-wider uppercase mb-3">
+          ● Quickstart Protocol
         </div>
-        <div>
-          <h3 class="text-2xl font-semibold text-white">Get Questy</h3>
-          <p class="text-sm text-slate-400">The Autonomous R&amp;D and Strategic Intelligence Engine for AI Agents</p>
-        </div>
+        <h3 class="font-heading text-3xl sm:text-4xl md:text-[40px] font-light leading-tight text-white tracking-tight">
+          Get Questy
+        </h3>
+        <p class="font-heading mt-2 text-base sm:text-lg font-light text-white/70 leading-relaxed max-w-xl">
+          The Autonomous R&amp;D and Strategic Intelligence Engine for AI Agents
+        </p>
       </div>
 
-      <!-- Installation Tabs -->
-      <div class="flex border-b border-white/10 mb-6 gap-2 overflow-x-auto pb-1">
-        <button data-tab="tab-agy" class="tab-btn px-4 py-2 text-sm font-medium text-white border-b-2 border-indigo-500 bg-white/10 rounded-t-lg transition-all cursor-pointer whitespace-nowrap">
-          Google Antigravity
-        </button>
-        <button data-tab="tab-claude" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all cursor-pointer whitespace-nowrap">
-          Claude Code
-        </button>
-        <button data-tab="tab-copilot" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all cursor-pointer whitespace-nowrap">
-          Copilot &amp; Cursor
-        </button>
-        <button data-tab="tab-manual" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all cursor-pointer whitespace-nowrap">
-          Repository &amp; ZIP
-        </button>
+      <!-- Luxury Segmented Pill Tabs matching Questy CTA Buttons -->
+      <div class="relative z-10 mb-6 flex overflow-x-auto pb-1">
+        <div class="modal-pill-tabs-nav">
+          <button data-tab="tab-agy" class="modal-pill-tab active">
+            Google Antigravity
+          </button>
+          <button data-tab="tab-claude" class="modal-pill-tab">
+            Claude Code
+          </button>
+          <button data-tab="tab-copilot" class="modal-pill-tab">
+            Copilot &amp; Cursor
+          </button>
+          <button data-tab="tab-manual" class="modal-pill-tab">
+            Repository &amp; ZIP
+          </button>
+        </div>
       </div>
 
       <!-- Tab 1: Antigravity -->
-      <div id="tab-agy" class="tab-pane space-y-4">
-        <p class="text-sm text-slate-300">Clone the repository and open directly in Google Antigravity:</p>
-        <div class="terminal-block p-4 flex items-center justify-between">
-          <code class="text-sm font-mono text-indigo-300" id="cmd-agy">git clone https://github.com/Team-Antimatr/Questy.git</code>
-          <button data-copy-target="cmd-agy" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all cursor-pointer">
+      <div id="tab-agy" class="tab-pane space-y-4 relative z-10">
+        <p class="font-heading text-sm sm:text-base font-light text-white/75">
+          Clone the repository and open directly in Google Antigravity:
+        </p>
+        <div class="questy-code-block">
+          <code class="text-xs sm:text-sm font-mono text-indigo-200 select-all overflow-x-auto" id="cmd-agy">git clone https://github.com/Team-Antimatr/Questy.git</code>
+          <button data-copy-target="cmd-agy" class="px-5 py-2 rounded-full bg-white text-[#050404] hover:bg-slate-200 font-semibold text-xs transition-all shadow-md cursor-pointer shrink-0">
             Copy
           </button>
         </div>
-        <p class="text-xs text-slate-400 leading-relaxed">
-          Antigravity automatically detects <code>.agents/skills/</code> and the <code>.agents/plugins/questy/</code> plugin. Type <code>/</code> in the chat box to see all 7 commands auto-complete instantly.
+        <p class="text-xs sm:text-sm font-light text-white/50 leading-relaxed">
+          Antigravity automatically detects <code class="text-indigo-300">.agents/skills/</code> and the <code class="text-indigo-300">.agents/plugins/questy/</code> plugin. Type <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-xs">/</kbd> in chat to see all 7 commands auto-complete instantly.
         </p>
       </div>
 
       <!-- Tab 2: Claude Code -->
-      <div id="tab-claude" class="tab-pane hidden space-y-4">
-        <p class="text-sm text-slate-300">Run directly inside Anthropic Claude Code CLI:</p>
-        <div class="terminal-block p-4 flex items-center justify-between">
-          <code class="text-sm font-mono text-indigo-300" id="cmd-claude">/ques-research "Evaluate zero-knowledge proof throughput on WASM runtimes"</code>
-          <button data-copy-target="cmd-claude" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all cursor-pointer">
+      <div id="tab-claude" class="tab-pane hidden space-y-4 relative z-10">
+        <p class="font-heading text-sm sm:text-base font-light text-white/75">
+          Execute directly inside Anthropic Claude Code CLI:
+        </p>
+        <div class="questy-code-block">
+          <code class="text-xs sm:text-sm font-mono text-indigo-200 select-all overflow-x-auto" id="cmd-claude">/ques-research "Evaluate zero-knowledge proof throughput on WASM runtimes"</code>
+          <button data-copy-target="cmd-claude" class="px-5 py-2 rounded-full bg-white text-[#050404] hover:bg-slate-200 font-semibold text-xs transition-all shadow-md cursor-pointer shrink-0">
             Copy
           </button>
         </div>
-        <p class="text-xs text-slate-400 leading-relaxed">
-          Claude Code automatically detects the pre-configured <code>.claude/commands/</code> and <code>CLAUDE.md</code> in this repository.
+        <p class="text-xs sm:text-sm font-light text-white/50 leading-relaxed">
+          Claude Code automatically detects pre-configured <code class="text-indigo-300">.claude/commands/</code> and <code class="text-indigo-300">CLAUDE.md</code> in this repository.
         </p>
       </div>
 
       <!-- Tab 3: Copilot & Cursor -->
-      <div id="tab-copilot" class="tab-pane hidden space-y-4">
-        <p class="text-sm text-slate-300">Pre-configured for GitHub Copilot &amp; Cursor / OpenAI Codex:</p>
-        <div class="terminal-block p-4 flex items-center justify-between">
-          <code class="text-sm font-mono text-indigo-300" id="cmd-copilot">Apply /ques-research to verify architecture</code>
-          <button data-copy-target="cmd-copilot" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all cursor-pointer">
+      <div id="tab-copilot" class="tab-pane hidden space-y-4 relative z-10">
+        <p class="font-heading text-sm sm:text-base font-light text-white/75">
+          Pre-configured for GitHub Copilot &amp; Cursor / OpenAI Codex:
+        </p>
+        <div class="questy-code-block">
+          <code class="text-xs sm:text-sm font-mono text-indigo-200 select-all overflow-x-auto" id="cmd-copilot">Apply /ques-research to verify architecture</code>
+          <button data-copy-target="cmd-copilot" class="px-5 py-2 rounded-full bg-white text-[#050404] hover:bg-slate-200 font-semibold text-xs transition-all shadow-md cursor-pointer shrink-0">
             Copy
           </button>
         </div>
-        <p class="text-xs text-slate-400 leading-relaxed">
-          Configured via <code>.github/copilot-instructions.md</code> and <code>.cursorrules</code> in the repository root.
+        <p class="text-xs sm:text-sm font-light text-white/50 leading-relaxed">
+          Configured via <code class="text-indigo-300">.github/copilot-instructions.md</code> and <code class="text-indigo-300">.cursorrules</code> in the repository root.
         </p>
       </div>
 
       <!-- Tab 4: Git Clone & ZIP -->
-      <div id="tab-manual" class="tab-pane hidden space-y-4">
-        <p class="text-sm text-slate-300">Clone the full repository or download the ZIP archive:</p>
-        <div class="terminal-block p-4 flex items-center justify-between">
-          <code class="text-sm font-mono text-indigo-300" id="cmd-git">git clone https://github.com/Team-Antimatr/Questy.git</code>
-          <button data-copy-target="cmd-git" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all cursor-pointer">
+      <div id="tab-manual" class="tab-pane hidden space-y-4 relative z-10">
+        <p class="font-heading text-sm sm:text-base font-light text-white/75">
+          Clone the full repository or download the production ZIP archive:
+        </p>
+        <div class="questy-code-block">
+          <code class="text-xs sm:text-sm font-mono text-indigo-200 select-all overflow-x-auto" id="cmd-git">git clone https://github.com/Team-Antimatr/Questy.git</code>
+          <button data-copy-target="cmd-git" class="px-5 py-2 rounded-full bg-white text-[#050404] hover:bg-slate-200 font-semibold text-xs transition-all shadow-md cursor-pointer shrink-0">
             Copy
           </button>
         </div>
-        <a href="https://github.com/Team-Antimatr/Questy/archive/refs/heads/main.zip" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-all">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-          </svg>
-          <span>Download Zip Archive</span>
-        </a>
+        <div class="pt-2 flex items-center gap-4">
+          <a href="https://github.com/Team-Antimatr/Questy/archive/refs/heads/main.zip" class="btn-primary-download inline-flex items-center gap-2 h-[48px] px-7 rounded-full text-[#050404] text-sm font-semibold cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+            <span>Download ZIP Bundle</span>
+          </a>
+          <a href="https://github.com/Team-Antimatr/Questy" target="_blank" rel="noopener noreferrer" class="text-sm font-light text-white/60 hover:text-white transition-colors underline">
+            View on GitHub &rarr;
+          </a>
+        </div>
       </div>
 
     </div>
@@ -405,85 +426,90 @@
   <!-- ========================================================================
        MODAL 2: Plugins Directory & Skills Suite
        ======================================================================== -->
-  <div id="plugins-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-    <div class="modal-content glass-panel w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
-      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2 cursor-pointer">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div id="plugins-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+    <div class="modal-content questy-modal-card w-full max-w-3xl max-h-[88vh] overflow-y-auto p-6 sm:p-10 relative shadow-2xl">
+      <button data-modal-close class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer z-20" aria-label="Close modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
 
-      <div class="mb-6">
-        <div class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800/40 mb-2">
-          THE 7 UNIVERSAL SLASH COMMANDS
+      <div class="relative z-10 mb-8">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-mono tracking-wider uppercase mb-3">
+          ● The 7 Universal Slash Commands
         </div>
-        <h3 class="text-2xl font-semibold text-white">Questy Research Plugins</h3>
-        <p class="text-sm text-slate-400">Institutional commands available directly inside your AI pair programmer</p>
+        <h3 class="font-heading text-3xl sm:text-4xl md:text-[40px] font-light leading-tight text-white tracking-tight">
+          Questy Plugins
+        </h3>
+        <p class="font-heading mt-2 text-base sm:text-lg font-light text-white/70 leading-relaxed max-w-xl">
+          Institutional commands available directly inside your AI pair programmer
+        </p>
       </div>
 
       <!-- Skills List matching Team-Antimatr/Questy README -->
-      <div class="space-y-3">
+      <div class="space-y-3.5 relative z-10">
         
-        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-research</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Deep Multi-Angle Investigation</span>
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.06] transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <span class="font-mono text-sm md:text-base font-semibold text-indigo-300">/ques-research</span>
+            <span class="inline-flex self-start sm:self-auto px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Deep Multi-Angle Investigation</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Systematic hypothesis testing, real-time web investigation, and empirical evidence gathering.</p>
+          <p class="text-xs sm:text-sm font-light text-white/70 leading-relaxed">Systematic hypothesis testing, real-time web investigation, and empirical evidence gathering.</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-struct</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Structural Modeling &amp; Schemas</span>
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.06] transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <span class="font-mono text-sm md:text-base font-semibold text-indigo-300">/ques-struct</span>
+            <span class="inline-flex self-start sm:self-auto px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Structural Modeling &amp; Schemas</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Organizing unstructured data into taxonomies, comparison matrices, schemas, and trade-off trees.</p>
+          <p class="text-xs sm:text-sm font-light text-white/70 leading-relaxed">Organizing unstructured data into taxonomies, comparison matrices, schemas, and trade-off trees.</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-source</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Source Audit &amp; Bias Detection</span>
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.06] transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <span class="font-mono text-sm md:text-base font-semibold text-indigo-300">/ques-source</span>
+            <span class="inline-flex self-start sm:self-auto px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Source Audit &amp; Bias Detection</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Auditing provenance, verifying citations against primary source documents, and scoring evidentiary weight.</p>
+          <p class="text-xs sm:text-sm font-light text-white/70 leading-relaxed">Auditing provenance, verifying citations against primary source documents, and scoring evidentiary weight.</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-report</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Executive Decision-Ready Synthesis</span>
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.06] transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <span class="font-mono text-sm md:text-base font-semibold text-indigo-300">/ques-report</span>
+            <span class="inline-flex self-start sm:self-auto px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Executive Decision-Ready Synthesis</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Transforming complex findings into boardroom-ready briefs, executive summaries, and action plans.</p>
+          <p class="text-xs sm:text-sm font-light text-white/70 leading-relaxed">Transforming complex findings into boardroom-ready briefs, executive summaries, and action plans.</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-network</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Entity &amp; Dependency Mapping</span>
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.06] transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <span class="font-mono text-sm md:text-base font-semibold text-indigo-300">/ques-network</span>
+            <span class="inline-flex self-start sm:self-auto px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Entity &amp; Dependency Mapping</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Graphing multi-stakeholder ecosystems, technical dependencies, supply networks, and influence maps.</p>
+          <p class="text-xs sm:text-sm font-light text-white/70 leading-relaxed">Graphing multi-stakeholder ecosystems, technical dependencies, supply networks, and influence maps.</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-framework</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Evaluation &amp; Rubric Engine</span>
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.06] transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <span class="font-mono text-sm md:text-base font-semibold text-indigo-300">/ques-framework</span>
+            <span class="inline-flex self-start sm:self-auto px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Evaluation &amp; Rubric Engine</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Designing repeatable scoring models, benchmarking frameworks, and testing procedures.</p>
+          <p class="text-xs sm:text-sm font-light text-white/70 leading-relaxed">Designing repeatable scoring models, benchmarking frameworks, and testing procedures.</p>
         </div>
 
-        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-guidelines</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Analytical Rigor &amp; Epistemic Standards</span>
+        <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-indigo-500/40 hover:bg-white/[0.06] transition-all duration-300">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <span class="font-mono text-sm md:text-base font-semibold text-indigo-300">/ques-guidelines</span>
+            <span class="inline-flex self-start sm:self-auto px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Analytical Rigor &amp; Epistemic Standards</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Enforcing zero-bias isolation, source transparency, and uncertainty disclosure across all turns.</p>
+          <p class="text-xs sm:text-sm font-light text-white/70 leading-relaxed">Enforcing zero-bias isolation, source transparency, and uncertainty disclosure across all turns.</p>
         </div>
 
       </div>
 
-      <div class="mt-6 pt-4 border-t border-white/10 flex justify-end">
-        <button data-modal-close class="px-5 py-2 rounded-lg bg-white/10 hover:bg-white text-white hover:text-black font-semibold text-sm transition-all cursor-pointer">
+      <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between relative z-10">
+        <span class="text-xs font-mono text-white/40">7 universal skills configured</span>
+        <button data-modal-close class="px-7 py-2.5 rounded-full bg-white text-[#050404] hover:bg-slate-200 font-semibold text-sm transition-all cursor-pointer shadow-md">
           Close
         </button>
       </div>
@@ -493,38 +519,40 @@
   <!-- ========================================================================
        MODAL 3: Pillar Detailed Inspection Modal
        ======================================================================== -->
-  <div id="pillar-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-    <div class="modal-content glass-panel w-full max-w-xl rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
-      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div id="pillar-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+    <div class="modal-content questy-modal-card w-full max-w-xl p-6 sm:p-10 relative shadow-2xl">
+      <button data-modal-close class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer z-20" aria-label="Close modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
 
-      <span id="pillar-modal-badge" class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800/40 mb-3">
-        Principle
-      </span>
-      <h3 id="pillar-modal-title" class="text-2xl sm:text-3xl font-semibold text-white mb-3">
-        Pillar Title
-      </h3>
-      <p id="pillar-modal-desc" class="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
-        Pillar Description
-      </p>
+      <div class="relative z-10">
+        <span id="pillar-modal-badge" class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-mono tracking-wider uppercase mb-3">
+          Epistemic Standard #1
+        </span>
+        <h3 id="pillar-modal-title" class="font-heading text-3xl sm:text-4xl font-light text-white tracking-tight mb-3">
+          Pillar Title
+        </h3>
+        <p id="pillar-modal-desc" class="font-heading text-base font-light text-white/70 leading-relaxed mb-6">
+          Pillar Description
+        </p>
 
-      <div class="space-y-3 mb-6">
-        <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Core Capabilities:</h4>
-        <ul id="pillar-modal-points" class="space-y-2.5">
-          <!-- Dynamically populated via main.js -->
-        </ul>
-      </div>
-
-      <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-        <div class="text-xs font-mono text-slate-400">
-          Slash Command: <span id="pillar-modal-cmd" class="text-indigo-300 font-semibold"></span>
+        <div class="space-y-3 mb-8">
+          <h4 class="text-xs font-mono uppercase tracking-widest text-indigo-400">Core Capabilities</h4>
+          <ul id="pillar-modal-points" class="space-y-3">
+            <!-- Dynamically populated via main.js -->
+          </ul>
         </div>
-        <button data-modal-close class="px-4 py-1.5 rounded bg-white text-black font-semibold text-xs hover:bg-slate-200 transition-all">
-          Got it
-        </button>
+
+        <div class="questy-code-block">
+          <div class="text-xs font-mono text-white/50">
+            Slash Command: <span id="pillar-modal-cmd" class="text-indigo-300 font-semibold text-sm"></span>
+          </div>
+          <button data-modal-close class="px-5 py-2 rounded-full bg-white text-[#050404] hover:bg-slate-200 font-semibold text-xs transition-all cursor-pointer shadow-md">
+            Got it
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -532,23 +560,29 @@
   <!-- ========================================================================
        MODAL 4: Privacy Policy
        ======================================================================== -->
-  <div id="privacy-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-    <div class="modal-content glass-panel w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
-      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div id="privacy-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+    <div class="modal-content questy-modal-card w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 sm:p-10 relative shadow-2xl">
+      <button data-modal-close class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer z-20" aria-label="Close modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
-      <h3 class="text-2xl font-semibold text-white mb-4">Privacy Policy</h3>
-      <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
-        <p><strong>Effective Date:</strong> October 2026</p>
-        <p>At Questy, privacy and research integrity are foundational. Questy operates with local-first and zero-knowledge telemetry principles:</p>
-        <ul class="list-disc pl-5 space-y-1.5 text-slate-400">
-          <li><strong>Zero Sensitive Data Ingestion:</strong> Questy does not log, transmit, or monetize your source code, private git repositories, or proprietary prompts.</li>
-          <li><strong>Local Execution:</strong> All R&amp;D scoring rubrics and analytical rules evaluate entirely within your designated client workspace.</li>
-          <li><strong>Authentication &amp; Credentials:</strong> API keys, Git credentials, and personal tokens are never stored in plain text or centralized servers.</li>
-        </ul>
-        <p>For questions or security disclosures, contact <code>security@questy.ai</code>.</p>
+
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-mono tracking-wider uppercase mb-3">
+          ● Security &amp; Trust
+        </div>
+        <h3 class="font-heading text-3xl sm:text-4xl font-light text-white tracking-tight mb-4">Privacy Policy</h3>
+        <div class="text-sm sm:text-base font-light text-white/70 space-y-4 leading-relaxed">
+          <p><strong>Effective Date:</strong> October 2026</p>
+          <p>At Questy, privacy and research integrity are foundational. Questy operates with local-first and zero-knowledge telemetry principles:</p>
+          <ul class="list-disc pl-5 space-y-2 text-white/60">
+            <li><strong>Zero Sensitive Data Ingestion:</strong> Questy does not log, transmit, or monetize your source code, private git repositories, or proprietary prompts.</li>
+            <li><strong>Local Execution:</strong> All R&amp;D scoring rubrics and analytical rules evaluate entirely within your designated client workspace.</li>
+            <li><strong>Authentication &amp; Credentials:</strong> API keys, Git credentials, and personal tokens are never stored in plain text or centralized servers.</li>
+          </ul>
+          <p>For questions or security disclosures, contact <code class="text-indigo-300">security@questy.ai</code>.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -556,22 +590,28 @@
   <!-- ========================================================================
        MODAL 5: Terms of Service
        ======================================================================== -->
-  <div id="terms-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-    <div class="modal-content glass-panel w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
-      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <div id="terms-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+    <div class="modal-content questy-modal-card w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 sm:p-10 relative shadow-2xl">
+      <button data-modal-close class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer z-20" aria-label="Close modal">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
-      <h3 class="text-2xl font-semibold text-white mb-4">Terms of Service</h3>
-      <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
-        <p><strong>Effective Date:</strong> October 2026</p>
-        <p>By utilizing the Questy intelligence platform, skills, or CLI tooling, you agree to these Terms:</p>
-        <ul class="list-disc pl-5 space-y-1.5 text-slate-400">
-          <li><strong>Evidentiary Integrity:</strong> Questy is engineered to eliminate speculative hallucinations. Users remain responsible for validating domain-specific deliverables in production environments.</li>
-          <li><strong>Permissible Use:</strong> You agree not to use Questy for automated vulnerability exploitation, credential harvesting, or unauthorized reconnaissance.</li>
-          <li><strong>Open Source &amp; Licensing:</strong> Questy core components and skill definitions are licensed under standard open-source terms.</li>
-        </ul>
+
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-mono tracking-wider uppercase mb-3">
+          ● Platform Terms
+        </div>
+        <h3 class="font-heading text-3xl sm:text-4xl font-light text-white tracking-tight mb-4">Terms of Service</h3>
+        <div class="text-sm sm:text-base font-light text-white/70 space-y-4 leading-relaxed">
+          <p><strong>Effective Date:</strong> October 2026</p>
+          <p>By utilizing the Questy intelligence platform, skills, or CLI tooling, you agree to these Terms:</p>
+          <ul class="list-disc pl-5 space-y-2 text-white/60">
+            <li><strong>Evidentiary Integrity:</strong> Questy is engineered to eliminate speculative hallucinations. Users remain responsible for validating domain-specific deliverables in production environments.</li>
+            <li><strong>Permissible Use:</strong> You agree not to use Questy for automated vulnerability exploitation, credential harvesting, or unauthorized reconnaissance.</li>
+            <li><strong>Open Source &amp; Licensing:</strong> Questy core components and skill definitions are licensed under standard open-source terms.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

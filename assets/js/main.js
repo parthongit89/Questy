@@ -225,7 +225,7 @@ function initModals() {
   });
 
   // Tab switching in download modal
-  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabButtons = document.querySelectorAll('.tab-btn, .modal-pill-tab');
   const tabPanes = document.querySelectorAll('.tab-pane');
 
   tabButtons.forEach((btn) => {
@@ -233,12 +233,10 @@ function initModals() {
       const targetTab = btn.getAttribute('data-tab');
 
       tabButtons.forEach((b) => {
-        b.classList.remove('text-white', 'border-indigo-500', 'bg-white/10');
-        b.classList.add('text-slate-400', 'border-transparent');
+        b.classList.remove('active');
       });
 
-      btn.classList.add('text-white', 'border-indigo-500', 'bg-white/10');
-      btn.classList.remove('text-slate-400', 'border-transparent');
+      btn.classList.add('active');
 
       tabPanes.forEach((pane) => {
         if (pane.id === targetTab) {
