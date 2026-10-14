@@ -1,0 +1,379 @@
+/* Questy Design System & Stylesheet */
+
+/* Local Font-Face Imports for Prompt */
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url('../../font/Prompt/Prompt-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-deep: #050404;
+  --bg-surface: #0b0c14;
+  --bg-card: rgba(18, 20, 32, 0.65);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(99, 102, 241, 0.4);
+  --accent-blue: #000646;
+  --accent-indigo: #6366f1;
+  --accent-purple: #8b5cf6;
+  --text-primary: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Prompt', 'Google Sans', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050404;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Ambient Radiant Glow Backgrounds */
+.ambient-glow-top {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1700px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 100px rgba(0, 10, 90, 0.5));
+  animation: pulseGlow 14s ease-in-out infinite alternate;
+}
+
+.ambient-glow-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 2200px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+  animation: pulseGlowReverse 16s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(0.98);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+@keyframes pulseGlowReverse {
+  0% {
+    opacity: 0.65;
+    transform: translateX(-50%) scale(1.04);
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(0.97);
+  }
+}
+
+/* Interactive Starfield / Ambient Particles Canvas */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Typography Helpers matching Figma */
+.font-prompt {
+  font-family: 'Prompt', sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.72) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 70%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(15, 17, 28, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav {
+  background: rgba(5, 4, 4, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Pillar Circle Container & Glow */
+.pillar-badge {
+  position: relative;
+  width: 290px;
+  height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.pillar-badge::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(0, 6, 70, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.pillar-badge:hover {
+  transform: translateY(-8px) scale(1.03);
+}
+
+.pillar-badge:hover::before {
+  opacity: 1;
+}
+
+.pillar-badge:hover .pillar-bg-svg {
+  filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.6));
+}
+
+.pillar-badge .pillar-bg-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: filter 0.5s ease;
+  z-index: 2;
+}
+
+.pillar-badge .pillar-icon-svg {
+  position: relative;
+  z-index: 3;
+  width: 140px;
+  height: 140px;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pillar-badge:hover .pillar-icon-svg {
+  transform: scale(1.08);
+}
+
+/* Floating animation */
+@keyframes floatSlow {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 6s ease-in-out infinite 2s;
+}
+
+.animate-float-delayed-2 {
+  animation: floatSlow 6s ease-in-out infinite 4s;
+}
+
+/* Download CTA Button Effects */
+.btn-primary-download {
+  position: relative;
+  background: #ffffff;
+  color: #050404;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.btn-primary-download::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-primary-download:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 45px rgba(255, 255, 255, 0.45), 0 0 80px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary-download:hover::after {
+  left: 100%;
+}
+
+.btn-primary-download:active {
+  transform: scale(0.98);
+}
+
+/* Modal Transitions */
+.modal-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  transform: scale(0.95) translateY(15px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Terminal / Code snippet styling */
+.terminal-block {
+  background: #090a10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pillar-badge {
+    width: 220px;
+    height: 220px;
+  }
+  .pillar-badge .pillar-icon-svg {
+    width: 105px;
+    height: 105px;
+  }
+}

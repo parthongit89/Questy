@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questy — Elite R&D Intelligence for AI Developer Agents</title>
+  <meta name="description" content="Questy transforms your coding assistant into a rigorous research partner by embedding institutional-grade R&D protocols directly into its reasoning loop." />
+  <meta name="theme-color" content="#050404" />
+
+  <!-- Preconnect to Google Fonts for optimal performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              canvas: '#050404',
+              surface: '#0f111c',
+              border: 'rgba(255, 255, 255, 0.08)',
+              glow: '#000646',
+              accent: '#6366f1',
+              accentLight: '#818cf8',
+              textMain: '#ffffff',
+              textMuted: '#94a3b8'
+            }
+          },
+          fontFamily: {
+            prompt: ['Prompt', 'sans-serif'],
+            display: ['Outfit', 'Prompt', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'Prompt', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Core Stylesheet with Local Fonts & Ambient Glow -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="assets/svg/icon-real-proofs.svg" />
+</head>
+
+<body class="bg-[#050404] text-white font-prompt relative min-h-screen selection:bg-indigo-500/30 selection:text-white">
+
+  <!-- Interactive Ambient Canvas for Constellation Particles -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Top Hero Ambient Radiant Glow (from Figma asset) -->
+  <img src="assets/svg/bg-hero-glow.svg" alt="Ambient Radiant Glow" class="ambient-glow-top select-none pointer-events-none" />
+
+  <!-- ========================================================================
+       Navigation Bar
+       ======================================================================== -->
+  <header id="main-navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 md:py-8">
+    <div class="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-24 flex items-center justify-between">
+      
+      <!-- Logo matching Figma (data-node-id="95:51") -->
+      <a href="#home" class="group flex items-center gap-3">
+        <span class="text-3xl md:text-[40px] font-semibold text-white tracking-tight opacity-95 group-hover:opacity-100 transition-opacity">
+          Questy
+        </span>
+        <span class="hidden sm:inline-block text-[11px] font-mono tracking-wider px-2 py-0.5 rounded-full bg-indigo-950/70 text-indigo-300 border border-indigo-700/50">
+          PROT-v1.0
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links matching Figma (data-node-id="95:64") -->
+      <nav class="hidden md:flex items-center gap-12 lg:gap-20 text-[18px] font-medium">
+        <a href="#home" class="text-white opacity-75 hover:opacity-100 hover:text-indigo-200 transition-all duration-200">
+          Home
+        </a>
+        <a href="#about" class="text-white opacity-75 hover:opacity-100 hover:text-indigo-200 transition-all duration-200">
+          About
+        </a>
+        <a href="#pillars" class="text-white opacity-75 hover:opacity-100 hover:text-indigo-200 transition-all duration-200">
+          Pillars
+        </a>
+        <button data-modal-target="plugins-modal" class="text-white opacity-75 hover:opacity-100 hover:text-indigo-200 transition-all duration-200 flex items-center gap-1.5 cursor-pointer">
+          <span>Plugins</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span>
+        </button>
+      </nav>
+
+      <!-- CTA Button in Header for Desktop -->
+      <div class="hidden sm:flex items-center gap-4">
+        <button data-modal-target="download-modal" class="px-5 py-2.5 rounded-full text-sm font-semibold bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300">
+          Get Started
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-toggle" aria-label="Open Navigation Menu" class="md:hidden p-2 text-white/80 hover:text-white focus:outline-none">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Navigation -->
+  <aside id="mobile-menu" class="fixed inset-y-0 right-0 w-72 bg-[#090b14] border-l border-white/10 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-between p-8">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-white/10">
+        <span class="text-2xl font-semibold text-white">Questy</span>
+        <button id="mobile-menu-close" aria-label="Close Navigation Menu" class="text-slate-400 hover:text-white p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-6 mt-8 text-lg font-medium">
+        <a href="#home" class="mobile-nav-link text-white/80 hover:text-white">Home</a>
+        <a href="#about" class="mobile-nav-link text-white/80 hover:text-white">About</a>
+        <a href="#pillars" class="mobile-nav-link text-white/80 hover:text-white">Core Pillars</a>
+        <button data-modal-target="plugins-modal" class="mobile-nav-link text-left text-white/80 hover:text-white flex items-center justify-between">
+          <span>Plugins & Skills</span>
+          <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400">7 skills</span>
+        </button>
+      </nav>
+    </div>
+    <div class="pt-6 border-t border-white/10">
+      <button data-modal-target="download-modal" class="w-full py-3 text-center rounded-full bg-white text-black font-semibold text-base shadow-lg">
+        Download Questy
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       Main Content Container
+       ======================================================================== -->
+  <main class="relative z-10">
+
+    <!-- HERO SECTION (matching Figma node 95:66 & 95:65) -->
+    <section id="home" class="pt-40 md:pt-56 lg:pt-64 pb-24 md:pb-36 px-6 sm:px-12 text-center flex flex-col items-center justify-center min-h-[75vh]">
+      
+      <!-- Status Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 animate-pulse">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+        <span class="text-xs md:text-sm font-medium tracking-wide text-slate-300">
+          Autonomous Research Verification Engine
+        </span>
+      </div>
+
+      <!-- Hero Headline matching Figma: Meet Questy -->
+      <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[135px] font-light leading-[1.05] tracking-tight text-white opacity-95 max-w-6xl mx-auto">
+        Meet Questy
+      </h1>
+
+      <!-- Hero Subtitle matching Figma: Elite R&D Intelligence for AI Developer Agents -->
+      <p class="mt-6 md:mt-10 text-2xl sm:text-3xl md:text-4xl lg:text-[55px] font-light leading-tight tracking-normal text-white opacity-85 max-w-5xl mx-auto">
+        Elite R&amp;D Intelligence for AI Developer Agents
+      </p>
+
+      <!-- Quick Action Badges -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm text-slate-400">
+        <span class="px-3 py-1 rounded-md bg-white/5 border border-white/5">0% Speculative Bias</span>
+        <span class="px-3 py-1 rounded-md bg-white/5 border border-white/5">Bayesian Uncertainty Calibration</span>
+        <span class="px-3 py-1 rounded-md bg-white/5 border border-white/5">Primary Source Verification</span>
+      </div>
+
+    </section>
+
+    <!-- CALL TO ACTION SECTION (matching Figma node 108:122) -->
+    <section class="py-20 md:py-32 px-6 sm:px-12 text-center flex flex-col items-center justify-center relative">
+      <div class="max-w-5xl mx-auto flex flex-col items-center">
+        
+        <!-- CTA Heading (data-node-id="108:112") -->
+        <h2 class="text-3xl sm:text-5xl md:text-[60px] font-normal leading-[1.15] text-white opacity-95">
+          Ready to accelerate your AI workflows?
+        </h2>
+
+        <!-- CTA Subheading (data-node-id="108:113") -->
+        <p class="mt-6 md:mt-8 text-xl sm:text-2xl md:text-[30px] font-light leading-relaxed text-white opacity-65 max-w-3xl">
+          Start with Questy and get structured intelligence for every developer agent in your stack.
+        </p>
+
+        <!-- CTA Download Button matching Figma (data-node-id="108:115") -->
+        <div class="mt-10 md:mt-14">
+          <button data-modal-target="download-modal" class="btn-primary-download h-[61px] px-10 rounded-[999px] text-[#050404] text-[18px] font-semibold cursor-pointer">
+            Download
+          </button>
+        </div>
+
+        <!-- Terminal Quick-Command Copy Box -->
+        <div class="mt-10 w-full max-w-xl mx-auto text-left">
+          <div class="terminal-block p-4 flex items-center justify-between gap-4 shadow-2xl backdrop-blur-md">
+            <div class="flex items-center gap-3 overflow-x-auto text-slate-300 text-xs sm:text-sm font-mono py-1">
+              <span class="text-indigo-400 select-none">$</span>
+              <span id="quick-install-cmd">agy plugin install questy</span>
+            </div>
+            <button data-copy-target="quick-install-cmd" title="Copy to clipboard" class="shrink-0 px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs font-mono text-white transition-all flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT QUESTY SECTION (matching Figma node 108:127) -->
+    <section id="about" class="py-24 md:py-40 px-6 sm:px-12 relative">
+      <div class="max-w-[1240px] mx-auto text-center flex flex-col items-center">
+        
+        <!-- About Questy Heading (data-node-id="95:69") -->
+        <h2 class="text-4xl sm:text-5xl md:text-[65px] font-normal leading-tight text-white opacity-95">
+          About Questy
+        </h2>
+
+        <!-- About Questy Body Text (data-node-id="99:4") -->
+        <p class="mt-8 md:mt-12 text-xl sm:text-2xl md:text-3xl lg:text-[35px] font-light leading-relaxed text-white opacity-75 max-w-5xl">
+          Questy transforms your coding assistant into a rigorous research partner by embedding institutional-grade R&amp;D protocols directly into its reasoning loop, eliminating hallucinations and ensuring total evidentiary rigor.
+        </p>
+
+        <!-- Feature Grid Cards showcasing real value -->
+        <div class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full text-left">
+          
+          <div class="glass-panel p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-all duration-300">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Zero Speculation</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Enforces clear demarcations between verified facts, external claims, working assumptions, and inferences before executing code changes.
+            </p>
+          </div>
+
+          <div class="glass-panel p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-all duration-300">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Audit-Grade Traceability</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Every decision, rubric, and benchmark maps directly to inspectable primary sources with explicit date tags and methodology notes.
+            </p>
+          </div>
+
+          <div class="glass-panel p-8 rounded-2xl border border-white/5 hover:border-indigo-500/30 transition-all duration-300">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Multi-Agent Interop</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Instantly pairs with Antigravity, Cursor, Claude Code, and GitHub Copilot to give autonomous subagents institutional discipline.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CORE PILLARS SECTION (matching Figma node 108:139) -->
+    <section id="pillars" class="py-24 md:py-40 px-6 sm:px-12 relative">
+      <div class="max-w-[1100px] mx-auto text-center flex flex-col items-center">
+        
+        <!-- Core Pillars Heading (data-node-id="101:45") -->
+        <h2 class="text-4xl sm:text-5xl md:text-[65px] font-normal leading-tight text-white opacity-95">
+          Core Pillars
+        </h2>
+
+        <p class="mt-4 text-slate-400 text-base md:text-lg max-w-xl">
+          Click any pillar to explore its underlying algorithmic architecture
+        </p>
+
+        <!-- Pillars Flex/Grid Container matching Figma layout (data-node-id="108:138") -->
+        <div class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 items-center justify-center w-full">
+          
+          <!-- Pillar 1: Unbiased Thinking (data-node-id="108:133") -->
+          <div class="flex flex-col items-center group">
+            <div class="pillar-badge" data-pillar="unbiased" title="Click to view details for Unbiased Thinking">
+              <img src="assets/svg/pillar-circle-1.svg" alt="Circle Background" class="pillar-bg-svg" />
+              <img src="assets/svg/icon-unbiased-thinking.svg" alt="Unbiased Thinking Icon" class="pillar-icon-svg animate-float" />
+            </div>
+            <h3 class="mt-8 text-2xl md:text-[35px] font-light leading-normal text-white opacity-85 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
+              Unbiased Thinking
+            </h3>
+            <span class="mt-2 text-xs font-mono text-indigo-400 uppercase tracking-widest opacity-60 group-hover:opacity-100">
+              Explore Protocol &rarr;
+            </span>
+          </div>
+
+          <!-- Pillar 2: Step-by-Step System (data-node-id="108:134") -->
+          <div class="flex flex-col items-center group">
+            <div class="pillar-badge" data-pillar="systematic" title="Click to view details for Step-by-Step System">
+              <img src="assets/svg/pillar-circle-2.svg" alt="Circle Background" class="pillar-bg-svg" />
+              <img src="assets/svg/icon-step-by-step.svg" alt="Step-by-Step System Icon" class="pillar-icon-svg animate-float-delayed" />
+            </div>
+            <h3 class="mt-8 text-2xl md:text-[35px] font-normal leading-normal text-white opacity-85 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
+              Step-by-Step System
+            </h3>
+            <span class="mt-2 text-xs font-mono text-indigo-400 uppercase tracking-widest opacity-60 group-hover:opacity-100">
+              Explore Protocol &rarr;
+            </span>
+          </div>
+
+          <!-- Pillar 3: Real Proofs (data-node-id="108:135") -->
+          <div class="flex flex-col items-center group">
+            <div class="pillar-badge" data-pillar="proofs" title="Click to view details for Real Proofs">
+              <img src="assets/svg/pillar-circle-3.svg" alt="Circle Background" class="pillar-bg-svg" />
+              <img src="assets/svg/icon-real-proofs.svg" alt="Real Proofs Icon" class="pillar-icon-svg animate-float-delayed-2" />
+            </div>
+            <h3 class="mt-8 text-2xl md:text-[40px] font-normal leading-normal text-white opacity-95 group-hover:opacity-100 group-hover:text-indigo-300 transition-all">
+              Real Proofs
+            </h3>
+            <span class="mt-2 text-xs font-mono text-indigo-400 uppercase tracking-widest opacity-60 group-hover:opacity-100">
+              Explore Protocol &rarr;
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE AGENT COMMAND TERMINAL (Product Value Highlight) -->
+    <section class="py-20 px-6 sm:px-12 relative max-w-4xl mx-auto">
+      <div class="terminal-block overflow-hidden shadow-2xl">
+        <!-- Terminal Header -->
+        <div class="px-4 py-3 bg-white/5 border-b border-white/10 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+            <span class="ml-2 text-xs font-mono text-slate-400">questy-kernel — research_session.log</span>
+          </div>
+          <span class="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-700/50 px-2 py-0.5 rounded">
+            CALIBRATED: 99.8% CONFIDENCE
+          </span>
+        </div>
+        <!-- Terminal Content -->
+        <div class="p-6 text-xs sm:text-sm font-mono space-y-3 leading-relaxed text-slate-300">
+          <p class="text-indigo-400 font-semibold">&gt; invoke_subagent("researcher", task="Evaluate Redis vs Dragonfly for high-write cache")</p>
+          <p class="text-slate-400">[1/3] Applying /Ques-guidelines: Isolating marketing claims from empirical benchmarks...</p>
+          <p class="text-emerald-400">[2/3] Verified primary source: Redis 7.2 vs Dragonfly OSS benchmark suite (100k req/s sustained).</p>
+          <p class="text-slate-200">[3/3] Synthesis deliverable generated via /Ques-report: Traceable rubric &amp; decision matrix established.</p>
+          <div class="mt-4 p-3 rounded bg-indigo-950/40 border border-indigo-800/40 text-indigo-200">
+            ✓ Result: Zero hallucinatory API calls detected. All recommendations linked to authenticated commit SHAs.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       Footer Section (matching Figma node 108:140)
+       ======================================================================== -->
+  <footer class="relative z-10 pt-20 pb-16 px-6 sm:px-12 md:px-16 lg:px-24">
+    
+    <!-- Bottom Ambient Radiant Glow (from Figma asset) -->
+    <img src="assets/svg/bg-footer-glow.svg" alt="Bottom Ambient Glow" class="ambient-glow-bottom select-none pointer-events-none" />
+
+    <div class="max-w-[1325px] mx-auto relative z-10">
+      
+      <!-- Footer Divider matching Figma (data-node-id="108:91") -->
+      <div class="w-full h-px bg-white/10 mb-12"></div>
+
+      <!-- Footer Brand Name matching Figma (data-node-id="108:94") -->
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <h3 class="text-3xl md:text-[45px] font-semibold text-white tracking-tight opacity-95">
+          Questy
+        </h3>
+        <div class="flex items-center gap-6">
+          <button data-modal-target="plugins-modal" class="text-sm text-slate-400 hover:text-white transition-colors">
+            Plugins Directory
+          </button>
+          <button data-modal-target="download-modal" class="text-sm text-slate-400 hover:text-white transition-colors">
+            CLI Tools
+          </button>
+          <a href="https://github.com/parthongit89/Questy" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer Tagline matching Figma (data-node-id="108:95") -->
+      <p class="mt-4 text-lg md:text-[25px] font-light leading-relaxed text-white opacity-65 max-w-4xl">
+        Developer intelligence for AI teams that need structured research, clear evidence, and faster decision-making.
+      </p>
+
+      <!-- Footer Bottom Copyright & Legal Links matching Figma (data-node-id="108:108" & "108:109") -->
+      <div class="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm md:text-[16px] font-light text-white opacity-50">
+        <p>© 2026 Questy. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <button data-modal-target="privacy-modal" class="hover:text-white transition-colors cursor-pointer">
+            Privacy Policy
+          </button>
+          <span>·</span>
+          <button data-modal-target="terms-modal" class="hover:text-white transition-colors cursor-pointer">
+            Terms of Service
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL 1: Download & CLI Installation
+       ======================================================================== -->
+  <div id="download-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="modal-content glass-panel w-full max-w-2xl rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
+      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-white text-black flex items-center justify-center font-bold text-xl">
+          Q
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold text-white">Get Questy</h3>
+          <p class="text-sm text-slate-400">Institutional intelligence protocols for your AI agents</p>
+        </div>
+      </div>
+
+      <!-- Installation Tabs -->
+      <div class="flex border-b border-white/10 mb-6 gap-2">
+        <button data-tab="tab-agy" class="tab-btn px-4 py-2 text-sm font-medium text-white border-b-2 border-indigo-500 bg-white/10 rounded-t-lg transition-all">
+          Antigravity (AGY)
+        </button>
+        <button data-tab="tab-npm" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all">
+          NPM / CLI
+        </button>
+        <button data-tab="tab-manual" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all">
+          Skills Package
+        </button>
+      </div>
+
+      <!-- Tab 1: Antigravity -->
+      <div id="tab-agy" class="tab-pane space-y-4">
+        <p class="text-sm text-slate-300">Run the Antigravity command in your workspace terminal:</p>
+        <div class="terminal-block p-4 flex items-center justify-between">
+          <code class="text-sm font-mono text-indigo-300" id="cmd-agy">agy plugin install questy</code>
+          <button data-copy-target="cmd-agy" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all">
+            Copy
+          </button>
+        </div>
+        <p class="text-xs text-slate-400">Equips your coding agent with 7 high-rigor skills: <code>/Ques-research</code>, <code>/Ques-guidelines</code>, <code>/Ques-framework</code>, and more.</p>
+      </div>
+
+      <!-- Tab 2: NPM -->
+      <div id="tab-npm" class="tab-pane hidden space-y-4">
+        <p class="text-sm text-slate-300">Install via global Node package manager:</p>
+        <div class="terminal-block p-4 flex items-center justify-between">
+          <code class="text-sm font-mono text-indigo-300" id="cmd-npm">npm install -g @questy/cli</code>
+          <button data-copy-target="cmd-npm" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all">
+            Copy
+          </button>
+        </div>
+        <p class="text-xs text-slate-400">Initialize in any repository with <code>questy init</code> to establish audit-grade research memory.</p>
+      </div>
+
+      <!-- Tab 3: Manual Skills -->
+      <div id="tab-manual" class="tab-pane hidden space-y-4">
+        <p class="text-sm text-slate-300">Directly link Questy markdown skills to your Cursor, Claude, or Copilot prompts:</p>
+        <div class="terminal-block p-4 flex items-center justify-between">
+          <code class="text-sm font-mono text-indigo-300" id="cmd-git">git clone https://github.com/parthongit89/Questy.git</code>
+          <button data-copy-target="cmd-git" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all">
+            Copy
+          </button>
+        </div>
+        <a href="https://github.com/parthongit89/Questy/archive/refs/heads/main.zip" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          <span>Download Zip Archive</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: Plugins Directory & Skills Suite
+       ======================================================================== -->
+  <div id="plugins-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="modal-content glass-panel w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
+      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <div class="mb-6">
+        <div class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800/40 mb-2">
+          INTEGRATED SKILLS SUITE
+        </div>
+        <h3 class="text-2xl font-semibold text-white">Questy Research Plugins</h3>
+        <p class="text-sm text-slate-400">Institutional commands available directly inside your AI pair programmer</p>
+      </div>
+
+      <!-- Skills List -->
+      <div class="space-y-3">
+        
+        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-research</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Investigation</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300">Conducts structured, impartial, evidence-led research using live authenticated web retrieval and cross-validated primary sources.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-guidelines</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Verification</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300">Applies shared standards for impartiality, source quality, uncertainty calibration, research integrity, and bias elimination.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-framework</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Methodology</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300">Designs reusable research methodologies, multi-criteria decision frameworks, scoring rubrics, and evaluation models.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-struct</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Architecture</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300">Structures complex research, requirements, evidence, and architectural decisions into clean taxonomies, matrices, and schemas.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-source</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Provenance</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300">Finds, evaluates, cross-checks, and documents sources. Rigorously assesses provenance, authority, and conflict-of-interest.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-network</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Ecosystem</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300">Maps complex ecosystems, dependencies, influence, open-source libraries, and collaborative information flows.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-report</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Executive</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300">Transforms messy multi-agent research traces into clear, executive decision-ready reports tailored to technical stakeholders.</p>
+        </div>
+
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-white/10 flex justify-end">
+        <button data-modal-close class="px-5 py-2 rounded-lg bg-white/10 hover:bg-white text-white hover:text-black font-semibold text-sm transition-all">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: Pillar Detailed Inspection Modal
+       ======================================================================== -->
+  <div id="pillar-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="modal-content glass-panel w-full max-w-xl rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
+      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <span id="pillar-modal-badge" class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800/40 mb-3">
+        Principle
+      </span>
+      <h3 id="pillar-modal-title" class="text-2xl sm:text-3xl font-semibold text-white mb-3">
+        Pillar Title
+      </h3>
+      <p id="pillar-modal-desc" class="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+        Pillar Description
+      </p>
+
+      <div class="space-y-3 mb-6">
+        <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400">Core Capabilities:</h4>
+        <ul id="pillar-modal-points" class="space-y-2.5">
+          <!-- Dynamically populated via main.js -->
+        </ul>
+      </div>
+
+      <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+        <div class="text-xs font-mono text-slate-400">
+          Slash Command: <span id="pillar-modal-cmd" class="text-indigo-300 font-semibold"></span>
+        </div>
+        <button data-modal-close class="px-4 py-1.5 rounded bg-white text-black font-semibold text-xs hover:bg-slate-200 transition-all">
+          Got it
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 4: Privacy Policy
+       ======================================================================== -->
+  <div id="privacy-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="modal-content glass-panel w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
+      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <h3 class="text-2xl font-semibold text-white mb-4">Privacy Policy</h3>
+      <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+        <p><strong>Effective Date:</strong> October 2026</p>
+        <p>At Questy, privacy and research integrity are foundational. Questy operates with local-first and zero-knowledge telemetry principles:</p>
+        <ul class="list-disc pl-5 space-y-1.5 text-slate-400">
+          <li><strong>Zero Sensitive Data Ingestion:</strong> Questy does not log, transmit, or monetize your source code, private git repositories, or proprietary prompts.</li>
+          <li><strong>Local Execution:</strong> All R&amp;D scoring rubrics and analytical rules evaluate entirely within your designated client workspace.</li>
+          <li><strong>Authentication &amp; Credentials:</strong> API keys, Git credentials, and personal tokens are never stored in plain text or centralized servers.</li>
+        </ul>
+        <p>For questions or security disclosures, contact <code>security@questy.ai</code>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 5: Terms of Service
+       ======================================================================== -->
+  <div id="terms-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="modal-content glass-panel w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
+      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <h3 class="text-2xl font-semibold text-white mb-4">Terms of Service</h3>
+      <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+        <p><strong>Effective Date:</strong> October 2026</p>
+        <p>By utilizing the Questy intelligence platform, skills, or CLI tooling, you agree to these Terms:</p>
+        <ul class="list-disc pl-5 space-y-1.5 text-slate-400">
+          <li><strong>Evidentiary Integrity:</strong> Questy is engineered to eliminate speculative hallucinations. Users remain responsible for validating domain-specific deliverables in production environments.</li>
+          <li><strong>Permissible Use:</strong> You agree not to use Questy for automated vulnerability exploitation, credential harvesting, or unauthorized reconnaissance.</li>
+          <li><strong>Open Source &amp; Licensing:</strong> Questy core components and skill definitions are licensed under standard open-source terms.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript Controller -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
