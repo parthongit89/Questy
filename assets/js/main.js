@@ -286,42 +286,42 @@ function initClipboardButtons() {
 const pillarDetails = {
   unbiased: {
     title: 'Unbiased Thinking',
-    badge: 'Institutional Principle #1',
+    badge: 'Epistemic Standard #1',
     description:
-      'Questy enforces strict algorithmic detachment from preconceptions, forcing AI agents to explore counter-evidence and measure hypothesis validity before formulating conclusions.',
+      'Questy enforces strict zero-bias isolation and algorithmic detachment from preconceptions, forcing AI agents to explore counter-hypotheses and edge cases before formulating conclusions.',
     points: [
-      'Disables confirmation bias loops through dual-hypothesis evaluation',
-      'Explicitly distinguishes facts, verified claims, inferences, and assumptions',
-      'Applies Bayesian calibrated uncertainty scoring (Verified, Supported, Disputed, Unverified)',
-      'Prevents sycophantic agreement with user presuppositions'
+      'Zero-bias isolation prevents premature convergence and sycophantic agreement',
+      'Systematic dual-hypothesis evaluation exploring edge cases and competing claims',
+      'Clean separation between empirical facts, verified benchmarks, and probabilistic models',
+      'Enforced uncertainty disclosure and source transparency across all turns'
     ],
-    command: '/Ques-guidelines'
+    command: '/ques-guidelines'
   },
   systematic: {
     title: 'Step-by-Step System',
-    badge: 'Institutional Principle #2',
+    badge: 'Epistemic Standard #2',
     description:
-      'Replaces black-box generation with a phased, auditable workflow. Every task transitions through strict execution gates from scoping to verification.',
+      'Replaces black-box generation with a phased, auditable 7-skill workflow transitioning through strict execution gates from inquiry to executive synthesis.',
     points: [
-      '5-Stage Execution: Scoping → Discovery → Synthesis → Audit → Deliverable',
-      'Reproducible audit trails recorded in session memory',
-      'Enforces unit tests, runnable asserts, and runtime contract verification',
-      'Server-authoritative validation rules preventing execution shortcuts'
+      'Modular pipeline decoupling hypothesis framing, source critique, and synthesis',
+      'Organizes unstructured data into taxonomies, comparison matrices, schemas, and trade-off trees',
+      'Designs repeatable scoring models, benchmarking frameworks, and testing procedures',
+      'Universal portability across Antigravity, Claude Code, Copilot, Codex, and Perplexity'
     ],
-    command: '/Ques-struct'
+    command: '/ques-struct'
   },
   proofs: {
     title: 'Real Proofs',
-    badge: 'Institutional Principle #3',
+    badge: 'Epistemic Standard #3',
     description:
-      'Zero hallucination tolerance. Every technical recommendation, benchmark figure, and code pattern is linked to inspectable, authenticated primary sources.',
+      'Zero hallucination tolerance. Every technical claim, recommendation, and benchmark is anchored to traceable primary sources and verified data.',
     points: [
-      'Live primary source verification via authenticated web & API probes',
-      'Automatic citation provenance cross-examination',
-      'Cryptographic hash verification of external dependencies and code',
-      'Explicit disclosure when evidence is incomplete or unverified'
+      'Provenance traceability prioritizing peer-reviewed literature, official docs, and primary code',
+      'Audits provenance and verifies citations directly against primary source documents',
+      'Strict anti-hallucination guardrails bound to verifiable evidentiary weight',
+      'Transforms complex findings into boardroom-ready briefs backed by quantified trade-offs'
     ],
-    command: '/Ques-source'
+    command: '/ques-source'
   }
 };
 

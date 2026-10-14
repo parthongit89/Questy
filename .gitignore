@@ -17,3 +17,6 @@ scratch/
 .env
 .env.local
 .env.*.local
+
+# Firebase cache
+.firebase/

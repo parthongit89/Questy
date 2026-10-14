@@ -72,7 +72,7 @@
       </a>
 
       <!-- Desktop Navigation Links matching Figma (data-node-id="95:64") -->
-      <nav class="hidden md:flex items-center gap-12 lg:gap-20 text-[18px] font-medium">
+      <nav class="hidden md:flex items-center gap-14 lg:gap-24 text-[18px] font-medium font-prompt">
         <a href="#home" class="text-white opacity-75 hover:opacity-100 hover:text-indigo-200 transition-all duration-200">
           Home
         </a>
@@ -80,20 +80,9 @@
           About
         </a>
         <a href="#pillars" class="text-white opacity-75 hover:opacity-100 hover:text-indigo-200 transition-all duration-200">
-          Pillars
+          Plugins
         </a>
-        <button data-modal-target="plugins-modal" class="text-white opacity-75 hover:opacity-100 hover:text-indigo-200 transition-all duration-200 flex items-center gap-1.5 cursor-pointer">
-          <span>Plugins</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping"></span>
-        </button>
       </nav>
-
-      <!-- CTA Button in Header for Desktop -->
-      <div class="hidden sm:flex items-center gap-4">
-        <button data-modal-target="download-modal" class="px-5 py-2.5 rounded-full text-sm font-semibold bg-white/10 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-300">
-          Get Started
-        </button>
-      </div>
 
       <!-- Mobile Hamburger Button -->
       <button id="mobile-menu-toggle" aria-label="Open Navigation Menu" class="md:hidden p-2 text-white/80 hover:text-white focus:outline-none">
@@ -119,16 +108,12 @@
       <nav class="flex flex-col gap-6 mt-8 text-lg font-medium">
         <a href="#home" class="mobile-nav-link text-white/80 hover:text-white">Home</a>
         <a href="#about" class="mobile-nav-link text-white/80 hover:text-white">About</a>
-        <a href="#pillars" class="mobile-nav-link text-white/80 hover:text-white">Core Pillars</a>
-        <button data-modal-target="plugins-modal" class="mobile-nav-link text-left text-white/80 hover:text-white flex items-center justify-between">
-          <span>Plugins & Skills</span>
-          <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400">7 skills</span>
-        </button>
+        <a href="#pillars" class="mobile-nav-link text-white/80 hover:text-white">Plugins</a>
       </nav>
     </div>
     <div class="pt-6 border-t border-white/10">
-      <button data-modal-target="download-modal" class="w-full py-3 text-center rounded-full bg-white text-black font-semibold text-base shadow-lg">
-        Download Questy
+      <button data-modal-target="download-modal" class="w-full py-3 text-center rounded-full bg-white text-black font-semibold text-base shadow-lg cursor-pointer">
+        Download
       </button>
     </div>
   </aside>
@@ -205,7 +190,7 @@
         </h2>
 
         <p class="mt-4 text-slate-400 text-base md:text-lg max-w-xl">
-          Click any pillar to explore its underlying algorithmic architecture
+          Click any pillar to explore its protocol, or <button data-modal-target="plugins-modal" class="text-indigo-400 hover:text-indigo-300 underline font-medium cursor-pointer">explore all 7 universal plugins</button>
         </p>
 
         <!-- Pillars Flex/Grid Container matching Figma layout (data-node-id="108:138") -->
@@ -281,13 +266,13 @@
           Questy
         </h3>
         <div class="flex items-center gap-6">
-          <button data-modal-target="plugins-modal" class="text-sm text-slate-400 hover:text-white transition-colors">
-            Plugins Directory
+          <button data-modal-target="plugins-modal" class="text-sm text-slate-400 hover:text-white transition-colors cursor-pointer">
+            Plugins
           </button>
-          <button data-modal-target="download-modal" class="text-sm text-slate-400 hover:text-white transition-colors">
-            CLI Tools
+          <button data-modal-target="download-modal" class="text-sm text-slate-400 hover:text-white transition-colors cursor-pointer">
+            Quickstart
           </button>
-          <a href="https://github.com/parthongit89/Questy" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
+          <a href="https://github.com/Team-Antimatr/Questy" target="_blank" rel="noopener noreferrer" class="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
             </svg>
@@ -335,57 +320,78 @@
         </div>
         <div>
           <h3 class="text-2xl font-semibold text-white">Get Questy</h3>
-          <p class="text-sm text-slate-400">Institutional intelligence protocols for your AI agents</p>
+          <p class="text-sm text-slate-400">The Autonomous R&amp;D and Strategic Intelligence Engine for AI Agents</p>
         </div>
       </div>
 
       <!-- Installation Tabs -->
-      <div class="flex border-b border-white/10 mb-6 gap-2">
-        <button data-tab="tab-agy" class="tab-btn px-4 py-2 text-sm font-medium text-white border-b-2 border-indigo-500 bg-white/10 rounded-t-lg transition-all">
-          Antigravity (AGY)
+      <div class="flex border-b border-white/10 mb-6 gap-2 overflow-x-auto pb-1">
+        <button data-tab="tab-agy" class="tab-btn px-4 py-2 text-sm font-medium text-white border-b-2 border-indigo-500 bg-white/10 rounded-t-lg transition-all cursor-pointer whitespace-nowrap">
+          Google Antigravity
         </button>
-        <button data-tab="tab-npm" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all">
-          NPM / CLI
+        <button data-tab="tab-claude" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all cursor-pointer whitespace-nowrap">
+          Claude Code
         </button>
-        <button data-tab="tab-manual" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all">
-          Skills Package
+        <button data-tab="tab-copilot" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all cursor-pointer whitespace-nowrap">
+          Copilot &amp; Cursor
+        </button>
+        <button data-tab="tab-manual" class="tab-btn px-4 py-2 text-sm font-medium text-slate-400 border-b-2 border-transparent hover:text-white rounded-t-lg transition-all cursor-pointer whitespace-nowrap">
+          Repository &amp; ZIP
         </button>
       </div>
 
       <!-- Tab 1: Antigravity -->
       <div id="tab-agy" class="tab-pane space-y-4">
-        <p class="text-sm text-slate-300">Run the Antigravity command in your workspace terminal:</p>
+        <p class="text-sm text-slate-300">Clone the repository and open directly in Google Antigravity:</p>
         <div class="terminal-block p-4 flex items-center justify-between">
-          <code class="text-sm font-mono text-indigo-300" id="cmd-agy">agy plugin install questy</code>
-          <button data-copy-target="cmd-agy" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all">
+          <code class="text-sm font-mono text-indigo-300" id="cmd-agy">git clone https://github.com/Team-Antimatr/Questy.git</code>
+          <button data-copy-target="cmd-agy" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all cursor-pointer">
             Copy
           </button>
         </div>
-        <p class="text-xs text-slate-400">Equips your coding agent with 7 high-rigor skills: <code>/Ques-research</code>, <code>/Ques-guidelines</code>, <code>/Ques-framework</code>, and more.</p>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Antigravity automatically detects <code>.agents/skills/</code> and the <code>.agents/plugins/questy/</code> plugin. Type <code>/</code> in the chat box to see all 7 commands auto-complete instantly.
+        </p>
       </div>
 
-      <!-- Tab 2: NPM -->
-      <div id="tab-npm" class="tab-pane hidden space-y-4">
-        <p class="text-sm text-slate-300">Install via global Node package manager:</p>
+      <!-- Tab 2: Claude Code -->
+      <div id="tab-claude" class="tab-pane hidden space-y-4">
+        <p class="text-sm text-slate-300">Run directly inside Anthropic Claude Code CLI:</p>
         <div class="terminal-block p-4 flex items-center justify-between">
-          <code class="text-sm font-mono text-indigo-300" id="cmd-npm">npm install -g @questy/cli</code>
-          <button data-copy-target="cmd-npm" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all">
+          <code class="text-sm font-mono text-indigo-300" id="cmd-claude">/ques-research "Evaluate zero-knowledge proof throughput on WASM runtimes"</code>
+          <button data-copy-target="cmd-claude" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all cursor-pointer">
             Copy
           </button>
         </div>
-        <p class="text-xs text-slate-400">Initialize in any repository with <code>questy init</code> to establish audit-grade research memory.</p>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Claude Code automatically detects the pre-configured <code>.claude/commands/</code> and <code>CLAUDE.md</code> in this repository.
+        </p>
       </div>
 
-      <!-- Tab 3: Manual Skills -->
+      <!-- Tab 3: Copilot & Cursor -->
+      <div id="tab-copilot" class="tab-pane hidden space-y-4">
+        <p class="text-sm text-slate-300">Pre-configured for GitHub Copilot &amp; Cursor / OpenAI Codex:</p>
+        <div class="terminal-block p-4 flex items-center justify-between">
+          <code class="text-sm font-mono text-indigo-300" id="cmd-copilot">Apply /ques-research to verify architecture</code>
+          <button data-copy-target="cmd-copilot" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all cursor-pointer">
+            Copy
+          </button>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Configured via <code>.github/copilot-instructions.md</code> and <code>.cursorrules</code> in the repository root.
+        </p>
+      </div>
+
+      <!-- Tab 4: Git Clone & ZIP -->
       <div id="tab-manual" class="tab-pane hidden space-y-4">
-        <p class="text-sm text-slate-300">Directly link Questy markdown skills to your Cursor, Claude, or Copilot prompts:</p>
+        <p class="text-sm text-slate-300">Clone the full repository or download the ZIP archive:</p>
         <div class="terminal-block p-4 flex items-center justify-between">
-          <code class="text-sm font-mono text-indigo-300" id="cmd-git">git clone https://github.com/parthongit89/Questy.git</code>
-          <button data-copy-target="cmd-git" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all">
+          <code class="text-sm font-mono text-indigo-300" id="cmd-git">git clone https://github.com/Team-Antimatr/Questy.git</code>
+          <button data-copy-target="cmd-git" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs text-white font-mono transition-all cursor-pointer">
             Copy
           </button>
         </div>
-        <a href="https://github.com/parthongit89/Questy/archive/refs/heads/main.zip" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-all">
+        <a href="https://github.com/Team-Antimatr/Questy/archive/refs/heads/main.zip" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-all">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
           </svg>
@@ -401,7 +407,7 @@
        ======================================================================== -->
   <div id="plugins-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
     <div class="modal-content glass-panel w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl border border-white/10 p-6 sm:p-8 bg-[#090b14] relative shadow-2xl">
-      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+      <button data-modal-close class="absolute top-5 right-5 text-slate-400 hover:text-white p-2 cursor-pointer">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
@@ -409,75 +415,75 @@
 
       <div class="mb-6">
         <div class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-400 border border-indigo-800/40 mb-2">
-          INTEGRATED SKILLS SUITE
+          THE 7 UNIVERSAL SLASH COMMANDS
         </div>
         <h3 class="text-2xl font-semibold text-white">Questy Research Plugins</h3>
         <p class="text-sm text-slate-400">Institutional commands available directly inside your AI pair programmer</p>
       </div>
 
-      <!-- Skills List -->
+      <!-- Skills List matching Team-Antimatr/Questy README -->
       <div class="space-y-3">
         
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-research</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Investigation</span>
+            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-research</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Deep Multi-Angle Investigation</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Conducts structured, impartial, evidence-led research using live authenticated web retrieval and cross-validated primary sources.</p>
+          <p class="text-xs sm:text-sm text-slate-300">Systematic hypothesis testing, real-time web investigation, and empirical evidence gathering.</p>
         </div>
 
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-guidelines</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Verification</span>
+            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-struct</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Structural Modeling &amp; Schemas</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Applies shared standards for impartiality, source quality, uncertainty calibration, research integrity, and bias elimination.</p>
+          <p class="text-xs sm:text-sm text-slate-300">Organizing unstructured data into taxonomies, comparison matrices, schemas, and trade-off trees.</p>
         </div>
 
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-framework</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Methodology</span>
+            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-source</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Source Audit &amp; Bias Detection</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Designs reusable research methodologies, multi-criteria decision frameworks, scoring rubrics, and evaluation models.</p>
+          <p class="text-xs sm:text-sm text-slate-300">Auditing provenance, verifying citations against primary source documents, and scoring evidentiary weight.</p>
         </div>
 
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-struct</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Architecture</span>
+            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-report</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Executive Decision-Ready Synthesis</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Structures complex research, requirements, evidence, and architectural decisions into clean taxonomies, matrices, and schemas.</p>
+          <p class="text-xs sm:text-sm text-slate-300">Transforming complex findings into boardroom-ready briefs, executive summaries, and action plans.</p>
         </div>
 
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-source</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Provenance</span>
+            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-network</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Entity &amp; Dependency Mapping</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Finds, evaluates, cross-checks, and documents sources. Rigorously assesses provenance, authority, and conflict-of-interest.</p>
+          <p class="text-xs sm:text-sm text-slate-300">Graphing multi-stakeholder ecosystems, technical dependencies, supply networks, and influence maps.</p>
         </div>
 
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-network</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Ecosystem</span>
+            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-framework</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Evaluation &amp; Rubric Engine</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Maps complex ecosystems, dependencies, influence, open-source libraries, and collaborative information flows.</p>
+          <p class="text-xs sm:text-sm text-slate-300">Designing repeatable scoring models, benchmarking frameworks, and testing procedures.</p>
         </div>
 
         <div class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-indigo-500/30 transition-all">
           <div class="flex items-center justify-between mb-1">
-            <span class="font-mono text-sm font-semibold text-indigo-300">/Ques-report</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-white/10 text-slate-300">Executive</span>
+            <span class="font-mono text-sm font-semibold text-indigo-300">/ques-guidelines</span>
+            <span class="text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Analytical Rigor &amp; Epistemic Standards</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-300">Transforms messy multi-agent research traces into clear, executive decision-ready reports tailored to technical stakeholders.</p>
+          <p class="text-xs sm:text-sm text-slate-300">Enforcing zero-bias isolation, source transparency, and uncertainty disclosure across all turns.</p>
         </div>
 
       </div>
 
       <div class="mt-6 pt-4 border-t border-white/10 flex justify-end">
-        <button data-modal-close class="px-5 py-2 rounded-lg bg-white/10 hover:bg-white text-white hover:text-black font-semibold text-sm transition-all">
+        <button data-modal-close class="px-5 py-2 rounded-lg bg-white/10 hover:bg-white text-white hover:text-black font-semibold text-sm transition-all cursor-pointer">
           Close
         </button>
       </div>
