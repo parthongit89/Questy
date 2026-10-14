@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "questy-antimatr",
     "public": ".",
     "cleanUrls": true,
     "trailingSlash": false,
