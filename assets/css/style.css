@@ -363,6 +363,18 @@ body {
   transform: scale(1) translateY(0);
 }
 
+/* Questy Hero-Treated Modal */
+.questy-hero-modal {
+  position: relative;
+  background: #050404;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 36px;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: 0 0 100px -15px rgba(0, 6, 70, 0.9), 0 0 50px -10px rgba(99, 102, 241, 0.35), 0 30px 100px -20px rgba(0, 0, 0, 0.98);
+  overflow: hidden;
+}
+
 /* Questy Modal Design System - Matching Figma Minimalism */
 .questy-modal-card {
   position: relative;
