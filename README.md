@@ -85,11 +85,33 @@ npx serve .
 
 ---
 
-## 🌐 Deployment
+## 🌐 Supported Native Agent Ecosystem
 
-- **Vercel:** Run `vercel deploy` or connect your GitHub repository for automated edge CDN deployment.
-- **Firebase Hosting:** Run `firebase deploy --only hosting`.
-- **GitHub Pages:** Go to Settings -> Pages -> Deploy from branch `main` / root.
+Questy protocols and skills are engineered to be universally portable across modern developer agent runtimes:
+
+| Ecosystem | Integration Type | Target Environment |
+| :--- | :--- | :--- |
+| **Google Antigravity** | Native Plugin & Skills | AGY Sidecar, Tools & Subagents |
+| **OpenAI Codex** | Prompt Chains & Custom Agents | GPT-4o / Codex Reasoning Workflows |
+| **Anthropic Claude** | Claude Code & Projects | Claude Projects & System Instructions |
+| **GitHub Copilot** | Instruction Engine | `.github/copilot-instructions.md` |
+| **Perplexity AI** | Spaces System Prompt | Perplexity Research Collections & Spaces |
+
+---
+
+## ⚖️ Legal & Trademarks Disclaimer
+
+Questy is an independent open-source research and intelligence protocol designed to enhance analytical rigor in AI developer agents.
+
+- **Nominative Fair Use Notice:** All product names, logos, trademarks, and registered trademarks cited in this repository and documentation (including but not limited to *Google Antigravity*, *OpenAI Codex*, *Anthropic Claude*, *GitHub Copilot*, and *Perplexity AI*) remain the exclusive property of their respective trademark holders.
+- **Non-Affiliation & Endorsement:** Their reference is made strictly for descriptive, identification, and software interoperability purposes under established principles of **Nominative Fair Use**. Use of these names, brand marks, and terminology does not imply any affiliation, sponsorship, official partnership, or endorsement by the respective trademark owners.
+- **Rigor & Verification Notice:** Questy enforces evidentiary rules, rubric structures, and citation audits. However, users remain solely responsible for validating domain-specific deliverables, code implementations, and adherence to their organization's internal safety and compliance policies.
+
+---
+
+## 📄 License
+
+This project is licensed under the terms of the [MIT License](LICENSE).
 
 ---
 
