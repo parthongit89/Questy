@@ -2,7 +2,8 @@
 
 > **Questy** transforms your coding assistant into a rigorous research partner by embedding institutional-grade R&D protocols directly into its reasoning loop, eliminating hallucinations and ensuring total evidentiary rigor.
 
-**Live Deployment:** [**https://questy-antimatr.web.app**](https://questy-antimatr.web.app) (Firebase Edge CDN)
+**Live Deployment:** [**https://questy-antimatr.web.app**](https://questy-antimatr.web.app) 
+> **Organization / Team:** Developed with **Antimatr**
 
 ---
 
