@@ -1,17 +1,15 @@
 # Questy — Elite R&D Intelligence for AI Developer Agents
 
-![Questy Banner](assets/svg/bg-hero-glow.svg)
-
 > **Questy** transforms your coding assistant into a rigorous research partner by embedding institutional-grade R&D protocols directly into its reasoning loop, eliminating hallucinations and ensuring total evidentiary rigor.
 
-🌐 **Live Deployment:** [**https://questy-antimatr.web.app**](https://questy-antimatr.web.app) (Firebase Edge CDN)
+**Live Deployment:** [**https://questy-antimatr.web.app**](https://questy-antimatr.web.app) (Firebase Edge CDN)
 
 ---
 
-## 🌟 Features & Design Implementation
+## Features & Design Implementation
 
 This frontend website is built directly from the official Figma specification:
-- **Figma Design Node ID:** [`89:11`](https://www.figma.com/design/QVJqkXUcwzJC97Nyvctt1S/Aws-builder-Project?node-id=89-11&m=dev)
+- **Figma Design **
 - **Deep Space Obsidian Aesthetic:** Dark mode first theme (`#050404`), glowing ambient nebula gradients, and high contrast typography complying with WCAG AA/AAA guidelines.
 - **Local Typography Integration:** Google Font **Prompt** integrated directly via `@font-face` from `./font/Prompt/` across all weights (Thin through Black), with Google Sans and Plus Jakarta Sans fallbacks.
 - **Vector Fidelity:** All vector badges, glowing concentric rings, and custom icons (`Unbiased Thinking`, `Step-by-Step System`, `Real Proofs`) extracted and served as clean, resolution-independent SVGs.
@@ -25,23 +23,23 @@ This frontend website is built directly from the official Figma specification:
 
 ---
 
-## 🏛️ Core Pillars
+## Core Pillars
 
-1. **⚖️ Unbiased Thinking**
+1. **Unbiased Thinking**
    - Counter-evidence exploration, dual-hypothesis testing, and strict separation between verified facts and speculative assumptions.
    - Powered by `/Ques-guidelines`.
 
-2. **🪜 Step-by-Step System**
+2. **Step-by-Step System**
    - Phased execution gates (Scoping → Discovery → Synthesis → Audit → Deliverable) with verifiable audit trails.
    - Powered by `/Ques-struct` and `/Ques-framework`.
 
-3. **📜 Real Proofs**
+3. **Real Proofs**
    - Zero hallucination tolerance. Every technical claim, library recommendation, and architecture decision is linked to authenticated primary sources.
    - Powered by `/Ques-source` and `/Ques-research`.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 Questy_web/
@@ -68,7 +66,7 @@ Questy_web/
 
 ---
 
-## 🚀 Quickstart & Local Preview
+## Quickstart & Local Preview
 
 Because Questy is a zero-build, frontend-only static site, you can view it immediately using any local web server or by opening `index.html` in your browser.
 
@@ -85,7 +83,7 @@ npx serve .
 
 ---
 
-## 🌐 Supported Native Agent Ecosystem
+## Supported Native Agent Ecosystem
 
 Questy protocols and skills are engineered to be universally portable across modern developer agent runtimes:
 
@@ -99,7 +97,7 @@ Questy protocols and skills are engineered to be universally portable across mod
 
 ---
 
-## ⚖️ Legal & Trademarks Disclaimer
+## Legal & Trademarks Disclaimer
 
 Questy is an independent open-source research and intelligence protocol designed to enhance analytical rigor in AI developer agents.
 
@@ -109,7 +107,7 @@ Questy is an independent open-source research and intelligence protocol designed
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the terms of the [MIT License](LICENSE).
 
